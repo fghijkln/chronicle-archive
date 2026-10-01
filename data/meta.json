@@ -1,0 +1,22 @@
+{
+ "title": "编年史档案馆",
+ "subtitle": "THE CHRONICLE ARCHIVE",
+ "volumes": [
+  {
+   "vol": 1,
+   "name": "第一卷",
+   "range": "1965年2月 — 1965年6月",
+   "count": 64,
+   "chars": 284984
+  },
+  {
+   "vol": 2,
+   "name": "第二卷",
+   "range": "1965年7月 — 1967年3月",
+   "count": 45,
+   "chars": 130274
+  }
+ ],
+ "total_chapters": 109,
+ "total_chars": 415258
+}

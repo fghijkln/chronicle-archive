@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>编年史档案馆</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topband">
+  <div class="seal">藏</div>
+  <div><h1>编年史档案馆</h1><div class="en">THE CHRONICLE ARCHIVE</div></div>
+  <nav><a href="index.html">馆门</a><a href="essay/daodu.html">导读</a><a href="search.html">检索</a><a href="#fanli">凡例</a></nav>
+</div>
+
+<div class="hero">
+  <div class="hall">—— 馆 藏 目 录 ——</div>
+  <h1>编年史档案馆</h1>
+  <div class="en">THE CHRONICLE ARCHIVE · EST. 2026</div>
+  <div class="stats" id="stats"><div class="loading">清点馆藏中……</div></div>
+</div>
+
+<div class="wrap">
+  <div class="volcards" id="volcards"></div>
+
+  <div style="text-align:center;margin-top:26px">
+    <a href="search.html" style="display:inline-block;background:#9e2b1e;color:#fff;text-decoration:none;
+      padding:12px 44px;letter-spacing:8px;font-size:15px;border-radius:2px">全 文 检 索</a>
+  </div>
+
+  <div class="fanli" id="fanli">
+    <h3>凡 例</h3>
+    <ol>
+      <li>本馆收录《编年史》<b>第一卷</b>（第 1–64 章）与<b>第二卷</b>（第 65–109 章）故事正文，共 109 章。</li>
+      <li>底本为作者迁移存档的两份文稿。文稿中的"用户"剧情提示条及两段非正文说明文字未收录，仅收故事正文。</li>
+      <li>原稿章节编号存在无编号、重号、缺号等情形，本馆按文稿顺序统一重编为第 1–109 章，各章原标题保留。</li>
+      <li>档号规则：A-1965-V[卷]-[章序号]，如 A-1965-V1-013 即第一卷第 13 章。</li>
+      <li>本馆为静态站点，可离线阅览；馆内另备《当历史不再等待因果》导读一卷（附 DOCX 下载）；附录收有大事记资料库与《勃列日涅夫在伦敦》特辑。</li>
+    </ol>
+  </div>
+
+  <h2 class="sect" style="margin-top:34px">导 读 <small>READER'S GUIDE</small></h2>
+  <div class="volcards">
+    <a class="volcard" href="essay/daodu.html">
+      <div class="vn">导读</div><h3 style="font-size:20px">当历史不再等待因果</h3>
+      <div class="range">《编年史》第一、二卷导读 · 七节 · 不剧透 · 附 DOCX 下载</div>
+      <div class="go">展卷 →</div>
+    </a>
+  </div>
+
+  <h2 class="sect" style="margin-top:34px">附 录 <small>APPENDIX</small></h2>
+  <div class="volcards">
+    <a class="volcard" href="appendix/chronicle-db.html">
+      <div class="vn">附录甲</div><h3 style="font-size:20px">大事记资料库</h3>
+      <div class="range">203 条事件 · 20 人物 · 4 条约，可检索</div>
+      <div class="go">前往 →</div>
+    </a>
+    <a class="volcard" href="appendix/brezhnev-in-london.html">
+      <div class="vn">附录乙</div><h3 style="font-size:20px">《勃列日涅夫在伦敦》</h3>
+      <div class="range">荒诞特辑 · BBC 全球直播 · 《雪境迷踪》</div>
+      <div class="go">前往 →</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>编年史档案馆 · 馆藏 109 章 · 建馆 2026 年 10 月</p>
+  <p>本馆内容为作者虚构作品存档，仅供备查</p>
+</footer>
+
+<script src="js/common.js"></script>
+<script>
+getMeta().then(m => {
+  $('#stats').innerHTML =
+    '<div class="stat"><b>' + m.total_chapters + '</b><span>馆藏章节</span></div>' +
+    '<div class="stat"><b>' + (m.total_chars / 10000).toFixed(1) + '万</b><span>馆藏字数</span></div>' +
+    '<div class="stat"><b>1965–1967</b><span>起止年份</span></div>';
+  $('#volcards').innerHTML = m.volumes.map(v =>
+    '<a class="volcard" href="volume.html?v=' + v.vol + '">' +
+    '<div class="vn">档号 A-1965-V' + v.vol + '</div>' +
+    '<h3>' + esc(v.name) + '</h3>' +
+    '<div class="range">' + esc(v.range) + '</div>' +
+    '<div class="meta">共 ' + v.count + ' 章 · 约 ' + fmtNum(v.chars) + ' 字</div>' +
+    '<div class="go">入馆阅览 →</div></a>').join('');
+}).catch(e => { $('#stats').innerHTML = '<div class="loading">馆藏清点失败，请检查 data/ 目录</div>'; });
+</script>
+</body>
+</html>

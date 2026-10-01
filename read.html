@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阅览 · 编年史档案馆</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topband">
+  <div class="seal">藏</div>
+  <div><h1>编年史档案馆</h1><div class="en">THE CHRONICLE ARCHIVE</div></div>
+  <nav><a href="index.html">馆门</a><a href="essay/daodu.html">导读</a><a href="search.html">检索</a></nav>
+</div>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">档案馆</a> / <a href="#" id="crumbVol">…</a> / <span id="crumbCh">…</span></div>
+  <div id="content"><div class="loading">展卷中……</div></div>
+</div>
+
+<footer>
+  <p>编年史档案馆 · 建馆 2026 年 10 月</p>
+</footer>
+
+<script src="js/common.js"></script>
+<script>
+const v = qs('v') || '1', s = parseInt(qs('s') || '1', 10);
+const FONT_KEY = 'archive-font-size';
+function applyFont(px) {
+  document.querySelectorAll('.article').forEach(a => a.style.fontSize = px + 'px');
+  document.querySelectorAll('.readtools button[data-px]').forEach(b =>
+    b.classList.toggle('on', parseInt(b.dataset.px, 10) === px));
+  try { localStorage.setItem(FONT_KEY, px); } catch (e) {}
+}
+function volOf(seq) { return seq <= 64 ? 1 : 2; }
+
+getVol(v).then(vol => {
+  const c = vol.chapters.find(x => x.seq === s);
+  if (!c) { $('#content').innerHTML = '<div class="loading">查无此卷宗</div>'; return; }
+  $('#crumbVol').textContent = '第' + (v === '1' ? '一' : '二') + '卷';
+  $('#crumbVol').href = 'volume.html?v=' + v;
+  $('#crumbCh').textContent = '第 ' + c.seq + ' 章';
+  document.title = '第' + c.seq + '章 · ' + c.title + ' · 编年史档案馆';
+
+  const paras = c.paras.map(p => {
+    const t = p.trim();
+    if (/^(—+|-+|———|···+|\*+)$/.test(t)) return '<p class="hr">' + esc(t) + '</p>';
+    return '<p>' + esc(t) + '</p>';
+  }).join('');
+
+  const prev = s - 1, next = s + 1;
+  const prevHtml = prev >= 1
+    ? '<a href="read.html?v=' + volOf(prev) + '&s=' + prev + '"><span>◀ 上一章</span>第 ' + prev + ' 章</a>' : '<span class="ph"></span>';
+  const nextHtml = next <= 109
+    ? '<a class="next" href="read.html?v=' + volOf(next) + '&s=' + next + '"><span>下一章 ▶</span>第 ' + next + ' 章</a>' : '<span class="ph"></span>';
+
+  $('#content').innerHTML =
+    '<div class="readhead"><div class="dh">档号 ' + danghao(c.vol, c.seq) + '</div>' +
+    '<h1>' + esc(c.title) + '</h1>' +
+    '<div class="date">' + esc(c.date || '') + ' · 全文约 ' + fmtNum(c.chars) + ' 字</div></div>' +
+    '<div class="readtools">字号 ' +
+    '<button data-px="16">小</button><button data-px="18">中</button><button data-px="20">大</button></div>' +
+    '<div class="article">' + paras + '</div>' +
+    '<div class="chapternav">' + prevHtml +
+    '<a class="mid" href="volume.html?v=' + v + '">回目录</a>' + nextHtml + '</div>';
+
+  document.querySelectorAll('.readtools button').forEach(b =>
+    b.onclick = () => applyFont(parseInt(b.dataset.px, 10)));
+  let px = 18;
+  try { px = parseInt(localStorage.getItem(FONT_KEY) || '18', 10) || 18; } catch (e) {}
+  applyFont(px);
+  window.scrollTo(0, 0);
+}).catch(() => { $('#content').innerHTML = '<div class="loading">展卷失败</div>'; });
+</script>
+</body>
+</html>

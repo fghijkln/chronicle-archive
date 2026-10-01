@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案卷目录 · 编年史档案馆</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topband">
+  <div class="seal">藏</div>
+  <div><h1>编年史档案馆</h1><div class="en">THE CHRONICLE ARCHIVE</div></div>
+  <nav><a href="index.html">馆门</a><a href="essay/daodu.html">导读</a><a href="search.html">检索</a></nav>
+</div>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">档案馆</a> / <span id="crumbVol">…</span></div>
+  <h2 class="sect" id="volTitle">案卷目录 <small>…</small></h2>
+  <div class="countline" id="countline"></div>
+  <div id="tableWrap"><div class="loading">调卷中……</div></div>
+</div>
+
+<footer>
+  <p>编年史档案馆 · 建馆 2026 年 10 月</p>
+</footer>
+
+<script src="js/common.js"></script>
+<script>
+const v = qs('v') || '1';
+Promise.all([getMeta(), getVol(v)]).then(([m, vol]) => {
+  const info = m.volumes.find(x => String(x.vol) === String(v)) || { name: '第' + v + '卷', range: '' };
+  $('#crumbVol').textContent = info.name;
+  $('#volTitle').innerHTML = '案卷目录 <small>' + esc(info.name) + ' · ' + esc(info.range) +
+    ' · 档号 A-1965-V' + v + '</small>';
+  $('#countline').textContent = '共 ' + vol.chapters.length + ' 卷宗，按顺序排列';
+  $('#tableWrap').innerHTML =
+    '<table class="archtable"><thead><tr><th>顺序号</th><th>档号</th><th>卷内题名</th><th>时间</th><th style="text-align:right">字数</th></tr></thead><tbody>' +
+    vol.chapters.map(c =>
+      '<tr><td class="no">' + c.seq + '</td>' +
+      '<td class="dh">' + danghao(c.vol, c.seq) + '</td>' +
+      '<td><a class="t" href="read.html?v=' + c.vol + '&s=' + c.seq + '">' + esc(c.title) + '</a></td>' +
+      '<td class="dt">' + esc(c.date || '—') + '</td>' +
+      '<td class="wc">' + fmtNum(c.chars) + '</td></tr>').join('') +
+    '</tbody></table>';
+}).catch(() => { $('#tableWrap').innerHTML = '<div class="loading">调卷失败</div>'; });
+</script>
+</body>
+</html>

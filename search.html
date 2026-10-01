@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全文检索 · 编年史档案馆</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topband">
+  <div class="seal">藏</div>
+  <div><h1>编年史档案馆</h1><div class="en">THE CHRONICLE ARCHIVE</div></div>
+  <nav><a href="index.html">馆门</a><a href="essay/daodu.html">导读</a><a href="search.html">检索</a></nav>
+</div>
+
+<div class="wrap">
+  <div class="crumb"><a href="index.html">档案馆</a> / 全文检索</div>
+  <h2 class="sect">全文检索 <small>SEARCH THE ARCHIVE</small></h2>
+  <div class="searchbox">
+    <input id="q" type="text" placeholder="输入关键词，如：雪境迷踪、苏伊士、胡志明…" autocomplete="off">
+    <button id="go">检索</button>
+  </div>
+  <div class="countline" id="countline">首次检索时将载入全部馆藏文本（约 1.3MB），之后在本机完成。</div>
+  <div id="results"></div>
+</div>
+
+<footer>
+  <p>编年史档案馆 · 建馆 2026 年 10 月</p>
+</footer>
+
+<script src="js/common.js"></script>
+<script>
+let vols = null, loading = false;
+async function ensureLoaded() {
+  if (vols) return vols;
+  if (loading) { while (loading) await new Promise(r => setTimeout(r, 100)); return vols; }
+  loading = true;
+  $('#countline').textContent = '正在载入馆藏文本……';
+  try { vols = [await getVol(1), await getVol(2)]; }
+  finally { loading = false; }
+  $('#countline').textContent = '馆藏已载入：在下方输入关键词检索。';
+  return vols;
+}
+function snippet(para, kw) {
+  const i = para.indexOf(kw);
+  const a = Math.max(0, i - 45), b = Math.min(para.length, i + kw.length + 45);
+  let s = esc(para.slice(a, b));
+  if (a > 0) s = '…' + s;
+  if (b < para.length) s = s + '…';
+  return s.replace(new RegExp(esc(kw).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), '<mark>' + esc(kw) + '</mark>');
+}
+async function search() {
+  const kw = $('#q').value.trim();
+  if (kw.length < 2) { $('#countline').textContent = '请输入至少两个字符。'; return; }
+  const data = await ensureLoaded();
+  const out = [];
+  for (const vol of data) for (const c of vol.chapters) {
+    if (c.title.includes(kw)) out.push({ c, hit: '题名' });
+    for (const p of c.paras) {
+      if (p.includes(kw)) { out.push({ c, hit: snippet(p, kw) }); if (out.length >= 200) break; }
+    }
+    if (out.length >= 200) break;
+  }
+  $('#countline').textContent = '“' + kw + '”—— 找到 ' + out.length + ' 处' + (out.length >= 200 ? '（仅显示前 200 处）' : '');
+  $('#results').innerHTML = out.slice(0, 200).map(({ c, hit }) =>
+    '<div class="result"><div class="rh"><a href="read.html?v=' + c.vol + '&s=' + c.seq + '">' +
+    esc(c.title) + '</a><span class="dh">' + danghao(c.vol, c.seq) + '</span></div>' +
+    (hit === '题名' ? '<p>（题名命中）</p>' : '<p>' + hit + '</p>') + '</div>').join('')
+    || '<div class="loading">没有找到相关卷宗</div>';
+}
+$('#go').onclick = search;
+$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') search(); });
+ensureLoaded();
+</script>
+</body>
+</html>
