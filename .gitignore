@@ -1,1 +1,4 @@
 node_modules/
+
+# GitHub Actions workflow 需 workflow 授权，暂不入库
+.github/workflows/
