@@ -1,0 +1,1 @@
+{"description":"编年史档案馆 · 静态站点，部署于 Cloudflare Pages","devDependencies":{"wrangler":"^3.0.0"},"name":"chronicle-archive","private":true,"scripts":{"deploy":"wrangler pages deploy . --project-name=chronicle-archive"},"version":"1.0.0"}
