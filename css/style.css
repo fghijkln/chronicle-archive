@@ -114,4 +114,4 @@ footer p{margin-bottom:4px}
 .epigraph{margin:26px auto 6px;max-width:640px}
 .epigraph p{font-size:19px;letter-spacing:3px;color:#3d3428;margin:0 0 8px;font-family:"Kaiti SC","STKaiti",KaiTi,serif}
 .epigraph span{font-size:12px;letter-spacing:2px;color:var(--muted);font-family:Georgia,serif}
-.epigraph .ep2{margin-top:20px}
+.epigraph .ep2{margin-top:24px;font-size:25px;letter-spacing:10px}
