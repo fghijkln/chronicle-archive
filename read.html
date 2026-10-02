@@ -20,12 +20,14 @@
 
 <footer>
   <p>编年史档案馆 · 建馆 2026 年 10 月</p>
+  <div class="colophon">CHRONICLE ARCHIVE · STATIC PRINT · MMXXVI</div>
 </footer>
 
 <script src="js/common.js"></script>
 <script>
 const v = qs('v') || '1', s = parseInt(qs('s') || '1', 10);
 const FONT_KEY = 'archive-font-size';
+let capDone = false;
 function applyFont(px) {
   document.querySelectorAll('.article').forEach(a => a.style.fontSize = px + 'px');
   document.querySelectorAll('.readtools button[data-px]').forEach(b =>
@@ -45,7 +47,8 @@ getVol(v).then(vol => {
   const paras = c.paras.map(p => {
     const t = p.trim();
     if (/^(—+|-+|———|···+|\*+)$/.test(t)) return '<p class="hr">' + esc(t) + '</p>';
-    return '<p>' + esc(t) + '</p>';
+    const cls = capDone ? '' : ' class="dropcap"'; capDone = true;
+    return '<p' + cls + '>' + esc(t) + '</p>';
   }).join('');
 
   const prev = s - 1, next = s + 1;
