@@ -1,4 +1,9 @@
 /* 编年史档案馆 · 旧卷宗风格 */
+@font-face{
+  font-family:"EpigraphKai";
+  src:url("../fonts/epigraph-kai.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
 :root{
   --paper:#e7dcc0; --paper2:#ded1ac; --card:#f6efdb; --card2:#efe5c9;
   --ink:#2b2117; --ink-soft:#4a3d2c;
@@ -6,7 +11,7 @@
   --gold:#a8823f; --gold-pale:#c9a86a;
   --muted:#857653; --line:#c0ad7f; --line-soft:#d3c49c;
   --serif:"Songti SC","STSong","Noto Serif SC","SimSun",serif;
-  --kai:"Kaiti SC","STKaiti","KaiTi","楷体",serif;
+  --kai:"EpigraphKai","Kaiti SC","STKaiti","KaiTi","楷体",serif;
   --type:"Courier New",Courier,monospace;
   --lat:Georgia,"Times New Roman",serif;
 }
