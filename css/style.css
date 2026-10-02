@@ -66,21 +66,7 @@ h2.sect small{font-size:12px;color:var(--muted);letter-spacing:3px;margin-left:1
 .hero .hall::before,.hero .hall::after{content:"";display:inline-block;width:64px;height:1px;background:var(--muted);vertical-align:middle;margin:0 14px;opacity:.7}
 .hero h1{font-size:56px;letter-spacing:18px;margin:18px 0 10px;font-weight:700;text-indent:18px}
 .hero .en{font-family:var(--lat);letter-spacing:7px;color:var(--muted);font-size:13px}
-.dateline{
-  margin:26px auto 0;display:inline-block;font-family:var(--type);font-size:13px;letter-spacing:2px;color:var(--ink-soft);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 26px;
-}
-.dateline span + span::before{content:"·";margin:0 12px;color:var(--muted)}
-.stampbox{position:absolute;top:44px;right:6%}
-.stamp{
-  display:inline-block;border:3px solid var(--seal);color:var(--seal);
-  font-family:var(--kai);font-weight:700;font-size:22px;letter-spacing:8px;text-indent:8px;
-  padding:10px 16px;border-radius:3px;transform:rotate(-8deg);
-  background:rgba(158,43,30,.05);box-shadow:inset 0 0 0 1px rgba(158,43,30,.35);
-  opacity:.88;user-select:none;
-}
 @media(max-width:640px){
-  .stampbox{display:none}
   .hero{padding:44px 16px 32px}
   .hero h1{font-size:38px;letter-spacing:10px;text-indent:10px}
   .hero .hall{letter-spacing:8px}
@@ -94,7 +80,6 @@ h2.sect small{font-size:12px;color:var(--muted);letter-spacing:3px;margin-left:1
   .topband nav a + a::before{margin-right:8px}
   .stat{padding:4px 18px}
   .stat + .stat{border-left:none}
-  .dateline{font-size:12px;padding:8px 14px}
   .volcard{padding:24px 20px 18px}
   .archtable{font-size:13px}
   .archtable th,.archtable td{padding:8px 8px}
