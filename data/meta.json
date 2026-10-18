@@ -36,8 +36,15 @@
    "range": "1974年3月 — 1976年12月",
    "count": 49,
    "chars": 84596
+  },
+  {
+   "vol": 6,
+   "name": "第六卷",
+   "range": "1977年1月 — 1980年6月",
+   "count": 67,
+   "chars": 114402
   }
  ],
- "total_chapters": 261,
- "total_chars": 709290
+ "total_chapters": 328,
+ "total_chars": 823692
 }
