@@ -34,12 +34,12 @@ function applyFont(px) {
     b.classList.toggle('on', parseInt(b.dataset.px, 10) === px));
   try { localStorage.setItem(FONT_KEY, px); } catch (e) {}
 }
-function volOf(seq) { return seq <= 64 ? 1 : 2; }
+function volOf(seq) { return seq <= 64 ? 1 : (seq <= 109 ? 2 : 3); }
 
 getVol(v).then(vol => {
   const c = vol.chapters.find(x => x.seq === s);
   if (!c) { $('#content').innerHTML = '<div class="loading">查无此卷宗</div>'; return; }
-  $('#crumbVol').textContent = '第' + (v === '1' ? '一' : '二') + '卷';
+  $('#crumbVol').textContent = '第' + ({ '1': '一', '2': '二', '3': '三' }[v] || v) + '卷';
   $('#crumbVol').href = 'volume.html?v=' + v;
   $('#crumbCh').textContent = '第 ' + c.seq + ' 章';
   document.title = '第' + c.seq + '章 · ' + c.title + ' · 编年史档案馆';
@@ -54,7 +54,7 @@ getVol(v).then(vol => {
   const prev = s - 1, next = s + 1;
   const prevHtml = prev >= 1
     ? '<a href="read.html?v=' + volOf(prev) + '&s=' + prev + '"><span>◀ 上一章</span>第 ' + prev + ' 章</a>' : '<span class="ph"></span>';
-  const nextHtml = next <= 109
+  const nextHtml = next <= 146
     ? '<a class="next" href="read.html?v=' + volOf(next) + '&s=' + next + '"><span>下一章 ▶</span>第 ' + next + ' 章</a>' : '<span class="ph"></span>';
 
   $('#content').innerHTML =

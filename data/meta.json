@@ -15,8 +15,15 @@
    "range": "1965年7月 — 1967年3月",
    "count": 45,
    "chars": 130274
+  },
+  {
+   "vol": 3,
+   "name": "第三卷",
+   "range": "1967年1月 — 1968年12月",
+   "count": 37,
+   "chars": 80017
   }
  ],
- "total_chapters": 109,
- "total_chars": 415258
+ "total_chapters": 146,
+ "total_chars": 495275
 }
