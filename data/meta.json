@@ -22,8 +22,15 @@
    "range": "1967年1月 — 1968年12月",
    "count": 37,
    "chars": 80017
+  },
+  {
+   "vol": 4,
+   "name": "第四卷",
+   "range": "1969年2月 — 1974年2月",
+   "count": 66,
+   "chars": 129419
   }
  ],
- "total_chapters": 146,
- "total_chars": 495275
+ "total_chapters": 212,
+ "total_chars": 624694
 }

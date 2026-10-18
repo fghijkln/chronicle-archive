@@ -36,8 +36,8 @@
   <div class="fanli" id="fanli">
     <h3>凡 例</h3>
     <ol>
-      <li>本馆收录《编年史》<b>第一卷</b>（第 1–64 章）、<b>第二卷</b>（第 65–109 章）与<b>第三卷</b>（第 110–146 章）故事正文，共 146 章。</li>
-      <li>原稿章节编号存在无编号、重号、缺号等情形，本馆按文稿顺序统一重编为第 1–146 章，各章原标题保留。</li>
+      <li>本馆收录《编年史》<b>第一卷</b>（第 1–64 章）、<b>第二卷</b>（第 65–109 章）、<b>第三卷</b>（第 110–146 章）与<b>第四卷</b>（第 147–212 章）故事正文，共 212 章。</li>
+      <li>原稿章节编号存在无编号、重号、缺号等情形，本馆按文稿顺序统一重编为第 1–212 章，各章原标题保留。</li>
       <li>档号规则：A-1965-V[卷]-[章序号]，如 A-1965-V1-013 即第一卷第 13 章。</li>
       <li>本馆为静态站点，可离线阅览；馆内另备《当历史不再等待因果》导读一卷（附 DOCX 下载）；附录收有大事记资料库与《勃列日涅夫在伦敦》特辑。</li>
     </ol>
@@ -78,7 +78,7 @@
 </div>
 
 <footer>
-  <p>编年史档案馆 · 馆藏 146 章 · 建馆 2026 年 10 月</p>
+  <p>编年史档案馆 · 馆藏 212 章 · 建馆 2026 年 10 月</p>
   <div class="colophon">CHRONICLE ARCHIVE · STATIC PRINT · MMXXVI</div>
 </footer>
 
@@ -88,7 +88,7 @@ getMeta().then(m => {
   $('#stats').innerHTML =
     '<div class="stat"><b>' + m.total_chapters + '</b><span>馆藏章节</span></div>' +
     '<div class="stat"><b>' + (m.total_chars / 10000).toFixed(1) + '万</b><span>馆藏字数</span></div>' +
-    '<div class="stat"><b>1965–1968</b><span>起止年份</span></div>';
+    '<div class="stat"><b>1965–1974</b><span>起止年份</span></div>';
   $('#volcards').innerHTML = m.volumes.map(v =>
     '<a class="volcard" href="volume.html?v=' + v.vol + '">' +
     '<div class="vn">档号 A-1965-V' + v.vol + '</div>' +
