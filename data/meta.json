@@ -43,8 +43,15 @@
    "range": "1977年1月 — 1980年6月",
    "count": 67,
    "chars": 114402
+  },
+  {
+   "vol": 7,
+   "name": "第七卷",
+   "range": "1980年6月 — 1982年9月",
+   "count": 51,
+   "chars": 88201
   }
  ],
- "total_chapters": 328,
- "total_chars": 823692
+ "total_chapters": 379,
+ "total_chars": 911893
 }

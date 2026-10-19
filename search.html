@@ -21,7 +21,7 @@
     <input id="q" type="text" placeholder="如：雪境迷踪、苏伊士、胡志明…" autocomplete="off">
     <button id="go">检索</button>
   </div>
-  <div class="countline" id="countline">首次检索时将载入全部馆藏文本（约 2.7MB），之后在本机完成。</div>
+  <div class="countline" id="countline">首次检索时将载入全部馆藏文本（约 2.9MB），之后在本机完成。</div>
   <div id="results"></div>
 </div>
 
@@ -38,7 +38,7 @@ async function ensureLoaded() {
   if (loading) { while (loading) await new Promise(r => setTimeout(r, 100)); return vols; }
   loading = true;
   $('#countline').textContent = '正在载入馆藏文本……';
-  try { vols = [await getVol(1), await getVol(2), await getVol(3), await getVol(4), await getVol(5), await getVol(6)]; }
+  try { vols = [await getVol(1), await getVol(2), await getVol(3), await getVol(4), await getVol(5), await getVol(6), await getVol(7)]; }
   finally { loading = false; }
   $('#countline').textContent = '馆藏已载入：在下方输入关键词检索。';
   return vols;
