@@ -50,8 +50,15 @@
    "range": "1980年6月 — 1982年9月",
    "count": 51,
    "chars": 88201
+  },
+  {
+   "vol": 8,
+   "name": "第八卷",
+   "range": "1982年10月 — 1986年2月",
+   "count": 55,
+   "chars": 91466
   }
  ],
- "total_chapters": 379,
- "total_chars": 911893
+ "total_chapters": 434,
+ "total_chars": 1003359
 }
