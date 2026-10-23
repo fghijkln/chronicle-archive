@@ -57,8 +57,15 @@
    "range": "1982年10月 — 1986年2月",
    "count": 55,
    "chars": 91466
+  },
+  {
+   "vol": 9,
+   "name": "第九卷",
+   "range": "1986年2月 — 1989年6月",
+   "count": 104,
+   "chars": 139205
   }
  ],
- "total_chapters": 434,
- "total_chars": 1003359
+ "total_chapters": 538,
+ "total_chars": 1142564
 }
