@@ -34,12 +34,12 @@ function applyFont(px) {
     b.classList.toggle('on', parseInt(b.dataset.px, 10) === px));
   try { localStorage.setItem(FONT_KEY, px); } catch (e) {}
 }
-function volOf(seq) { return seq <= 64 ? 1 : (seq <= 109 ? 2 : (seq <= 146 ? 3 : (seq <= 212 ? 4 : (seq <= 261 ? 5 : (seq <= 328 ? 6 : (seq <= 379 ? 7 : (seq <= 434 ? 8 : (seq <= 538 ? 9 : 10)))))))); }
+function volOf(seq) { return seq <= 64 ? 1 : (seq <= 109 ? 2 : (seq <= 146 ? 3 : (seq <= 212 ? 4 : (seq <= 261 ? 5 : (seq <= 328 ? 6 : (seq <= 379 ? 7 : (seq <= 434 ? 8 : (seq <= 538 ? 9 : (seq <= 580 ? 10 : 11))))))))); }
 
 getVol(v).then(vol => {
   const c = vol.chapters.find(x => x.seq === s);
   if (!c) { $('#content').innerHTML = '<div class="loading">查无此卷宗</div>'; return; }
-  $('#crumbVol').textContent = '第' + ({ '1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '七', '8': '八', '9': '九', '10': '十' }[v] || v) + '卷';
+  $('#crumbVol').textContent = '第' + ({ '1': '一', '2': '二', '3': '三', '4': '四', '5': '五', '6': '六', '7': '七', '8': '八', '9': '九', '10': '十', '11': '十一' }[v] || v) + '卷';
   $('#crumbVol').href = 'volume.html?v=' + v;
   $('#crumbCh').textContent = '第 ' + c.seq + ' 章';
   document.title = '第' + c.seq + '章 · ' + c.title + ' · 编年史档案馆';
@@ -54,7 +54,7 @@ getVol(v).then(vol => {
   const prev = s - 1, next = s + 1;
   const prevHtml = prev >= 1
     ? '<a href="read.html?v=' + volOf(prev) + '&s=' + prev + '"><span>◀ 上一章</span>第 ' + prev + ' 章</a>' : '<span class="ph"></span>';
-  const nextHtml = next <= 580
+  const nextHtml = next <= 593
     ? '<a class="next" href="read.html?v=' + volOf(next) + '&s=' + next + '"><span>下一章 ▶</span>第 ' + next + ' 章</a>' : '<span class="ph"></span>';
 
   $('#content').innerHTML =

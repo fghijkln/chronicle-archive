@@ -71,8 +71,15 @@
    "range": "1989年6月 — 1993年12月",
    "count": 42,
    "chars": 80756
+  },
+  {
+   "vol": 11,
+   "name": "第十一卷",
+   "range": "1991年 — 1994年",
+   "count": 13,
+   "chars": 22720
   }
  ],
- "total_chapters": 580,
- "total_chars": 1223320
+ "total_chapters": 593,
+ "total_chars": 1246040
 }
