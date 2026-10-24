@@ -4,6 +4,11 @@
   src:url("../fonts/epigraph-kai.woff2") format("woff2");
   font-weight:400;font-style:normal;font-display:swap;
 }
+@font-face{
+  font-family:"MottoScript";
+  src:url("../fonts/great-vibes.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
 :root{
   --paper:#e7dcc0; --paper2:#ded1ac; --card:#f6efdb; --card2:#efe5c9;
   --ink:#2b2117; --ink-soft:#4a3d2c;
@@ -98,6 +103,11 @@ h2.sect small{font-size:12px;color:var(--muted);letter-spacing:3px;margin-left:1
 .epigraph p{font-size:25px;letter-spacing:3px;color:#3d3428;margin:0 0 8px;font-family:var(--kai)}
 .epigraph span{font-size:12px;letter-spacing:2px;color:var(--muted);font-family:var(--lat)}
 .epigraph .ep2{margin-top:24px;font-size:25px;letter-spacing:10px}
+.motto{margin:30px auto 4px;max-width:660px;text-align:center}
+.motto .mz{font-family:var(--kai);font-size:27px;letter-spacing:6px;color:var(--ink);margin:0 0 6px}
+.motto .me{font-family:"MottoScript","Snell Roundhand",cursive;font-size:31px;line-height:1.2;color:var(--gold);margin:0 0 16px}
+.motto .mz.sub{font-size:19px;letter-spacing:4px;color:var(--ink-soft)}
+.motto .me.sub{font-size:24px;margin-bottom:0}
 
 .stats{display:flex;justify-content:center;gap:0;margin:34px auto 0;max-width:640px;flex-wrap:wrap}
 .stat{text-align:center;padding:4px 34px}
