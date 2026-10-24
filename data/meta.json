@@ -64,8 +64,15 @@
    "range": "1986年2月 — 1989年6月",
    "count": 104,
    "chars": 139205
+  },
+  {
+   "vol": 10,
+   "name": "第十卷",
+   "range": "1989年6月 — 1993年12月",
+   "count": 42,
+   "chars": 80756
   }
  ],
- "total_chapters": 538,
- "total_chars": 1142564
+ "total_chapters": 580,
+ "total_chars": 1223320
 }
