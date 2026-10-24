@@ -54,7 +54,7 @@ getVol(v).then(vol => {
   const prev = s - 1, next = s + 1;
   const prevHtml = prev >= 1
     ? '<a href="read.html?v=' + volOf(prev) + '&s=' + prev + '"><span>◀ 上一章</span>第 ' + prev + ' 章</a>' : '<span class="ph"></span>';
-  const nextHtml = next <= 594
+  const nextHtml = next <= 595
     ? '<a class="next" href="read.html?v=' + volOf(next) + '&s=' + next + '"><span>下一章 ▶</span>第 ' + next + ' 章</a>' : '<span class="ph"></span>';
 
   $('#content').innerHTML =
